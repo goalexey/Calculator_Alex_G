@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<style>
+body {
+	margin: 0 auto;
+	background: #000000;
+	background: -webkit-radial-gradient(circle, #ffffff 1%, #000000) no-repeat center center fixed;
+	background: -moz-radial-gradient(circle, #ffffff 20%, #000000);
+	/*background: #8e9eab; 
+	background: -webkit-radial-gradient(circle, #eef2f3 20%, #8e9eab);
+	background: radial-gradient(circle, #eef2f3 20%, #8e9eab); */
+	background-size: cover;
+	        
+}
+
+#calculator {
+
+}
+
+.keypad-wrapper {
+	margin: 0 auto;
+	width: 590px;
+}
+
+#screen-div {
+	margin: 0 auto;
+	width: 590px;
+	height: 300px;
+	border-radius: 20%;
+	background-image: url(images/screen01_cropped.png);
+	background-size: cover;
+}
+
+#screen-div img {
+	position: absolute;
+	/*box-shadow: 0 15px 20px;*/
+	border-radius: 5%;
+}
+
+.screen {
+	width: 198px;
+	height: 183px;
+	background: #019104;
+	position: relative;
+	left: 195px; top: 45px;
+	font-size: 30px;
+	font-family: Impact;
+	color: beige;
+	word-wrap: break-word;
+	overflow: scroll;
+
+}
+
+.screen-input {
+	width: 198px;
+	height: 183px;
+	background: #019104;
+	position: absolute;
+	left: -2px; top: -1px;
+	font-size: 30px;
+	font-family: Impact;
+	color: beige;
+	word-wrap: break-word;
+	overflow: scroll;
+	text-align: right;
+
+}
+
+#keypad {
+	position: relative;
+	margin: 0 auto;
+	width: 480px;
+	height: 450px;
+	background-image: url(images/background01.jpg);
+	background-size: cover;
+	border-radius: 15px;
+	box-shadow: 0px 10px 10px;
+	border: solid black 2px;
+	/*background: #485563; 
+	background: -webkit-linear-gradient(to left, #485563 , #29323c); 
+	background: linear-gradient(to left, #485563 , #29323c);*/ 
+        
+}
+
+
+.clear-btn {
+	position: absolute;
+	cursor: pointer;
+	width: 250px;
+	height: 40px;
+	margin: 20px 47px;
+	border: solid white 1px;
+	background-color: #5e123d;
+	color: white;
+	text-align: center;
+	box-shadow: 0 1px 5px;
+	font-family: impact;
+	font-size: 20px;
+}
+
+.clear-btn:hover {
+	background-color: beige;
+	color: #5e123d;
+}
+
+.avg-btn {
+	position: absolute;
+	cursor: pointer;
+	margin-top: 20px;
+	width: 85px;
+	height: 40px;
+	left: 348px; top: 20px;
+	border: solid white 1px;
+	background-color: #5e123d;
+	color: white;
+	text-align: center;
+	box-shadow: 0 1px 5px;
+	font-family: impact;
+	font-size: 20px;
+}
+
+.avg-btn:hover {
+	background-color: beige;
+	color: #5e123d;
+}
+
+.top {
+	margin-top: 20px;
+	height: 80px;
+}
+
+.row {
+	padding: 3px 40px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.keys {
+
+}
+
+.key {
+	cursor: pointer;
+	margin: 7px;
+	padding: 10px;
+	display: inline-block;
+	border: solid white 1px;
+	width: 86px;
+	height: 60px;
+	border-radius: 2px;
+	background-color: grey;
+	background-size: cover;
+	color: white;
+	font-size: 20px;
+	font-family: Arial;
+	box-shadow: 0 1px 10px;
+}
+
+.key:hover {
+	background-color: blue;
+}
+
+.operator {
+	background-color: black;
+}
+
+.operator:hover {
+	background-color: red;
+}
+
+#eval {
+	background-color: beige;
+	color: black;
+}
+
+#eval:hover{
+	background-color: pink;
+}
+
+/*ANIMATION*/
+
+@keyframes changekeypadshadow {
+  from {
+    box-shadow: 0 10px 10px;
+  }
+
+  to {
+    box-shadow: 0 25px 30px;
+  }
+}
+
+#keypad {
+  animation-duration: 2s;
+  animation-name: changekeypadshadow;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+
+
+
+
+
+</style>
+</head>
+<body>
+	<div id="screen-div">
+		<div class="screen">
+			<form name="myform" >
+				<input type="text" name="answer" class="screen-input"/>
+			</form>
+		</div>
+	</div>	
+
+	<div class="keypad-wrapper">
+		<div id="keypad">
+			<!-- CLEAR FIELD -->
+			<div class="top">
+				<input class="clear-btn" type='button' value='CLEAR' onclick="myform.answer.value = ''"></input>
+				<input class="avg-btn" type="button" value='AVG' onclick="average()"></input>
+			</div>
+			<!-- BODY WITH KEYS -->
+			<div class="keys">
+				<div class='row'>
+					<input class="key" type='button' value='7' onclick="myform.answer.value += '7'"></input>
+					<input class="key" type='button' value='8' onclick="myform.answer.value += '8'"></input>
+					<input class="key" type='button' value='9' onclick="myform.answer.value += '9'"></input>
+					<input class="key operator" type='button' value='+' onclick="myform.answer.value += ' + '"></input>
+				</div>
+				<div class='row'>
+					<input class="key" type='button' value='4' onclick="myform.answer.value += '4'"></input>
+					<input class="key" type='button' value='5' onclick="myform.answer.value += '5'"></input>
+					<input class="key" type='button' value='6' onclick="myform.answer.value += '6'"></input>
+					<input class="key operator" type='button' value='-' onclick="myform.answer.value += ' - '"></input>
+				</div>
+				<div class="row">
+					<input class="key" type='button' value='1' onclick="myform.answer.value += '1'"></input>
+					<input class="key" type='button' value='2' onclick="myform.answer.value += '2'"></input>
+					<input class="key" type='button' value='3' onclick="myform.answer.value += '3'"></input>
+					<input class="key operator" type='button' value=' / ' onclick="myform.answer.value += ' / '"></input>
+				</div>
+				<div class='row'>
+					<input class="key" type='button' value='0' onclick="myform.answer.value += '0'"></input>
+					<input class="key" type='button' value='.' onclick="myform.answer.value += '.'"></input>
+					<input class="key" id="eval" type='button' value='=' onclick="myform.answer.value = eval(myform.answer.value)"></input>
+					<input class="key operator" type='button' value=' * ' onclick="myform.answer.value += ' * '"></input>
+				</div>
+			</div>
+		</div>
+	</div>
+<script>
+
+	// FULLY FUNCTIONING AVERAGE BUTTON :)
+
+	function average(){
+		var ans = eval(myform.answer.value);
+		var myString = myform.answer.value;
+		var container = myString.split(' ');
+		var numberArray = [];
+
+		for (var i = 0; i < container.length; i++){
+			if (isNaN(container[i]) == false){
+				numberArray.push(container[i]);
+			}
+		}
+
+		var result = ans/numberArray.length;
+		myform.answer.value = result;
+	}
+
+</script>
+</body>
+</html>
